@@ -16,18 +16,9 @@ public class GrassField extends AbstractWorldMap {
         createGrassMap();
     }
     private void createGrassMap() {
-        Random rand = new Random();
-        for (int i = 0; i < numberOfGrass; i++) {
-            while(true){
-                int x = rand.nextInt((int) sqrt(numberOfGrass*10)+1);
-                int y = rand.nextInt((int) sqrt(numberOfGrass*10)+1);
-                Vector2d pos = new Vector2d(x, y);
-                if (!grassMap.containsKey(pos)){
-                    Grass grass = new Grass(pos);
-                    grassMap.put(pos, grass);
-                    break;
-                }
-            }
+        RandomPositionGenerator randomPositionGenerator = new RandomPositionGenerator((int)sqrt(10*numberOfGrass), (int)sqrt(10*numberOfGrass), numberOfGrass);
+        for(Vector2d grassPosition : randomPositionGenerator) {
+            grassMap.put(grassPosition, new Grass(grassPosition));
         }
     }
 
