@@ -1,9 +1,47 @@
-# PO_2024_SR1830_SWIERZY
+# 📘 Laboratoria z Programowania Obiektowego (Java)
 
-Piotr Świerzy
+## 🎯 Opis
 
-Grupa 11, środa 18:30-20:00
+Repozytorium zawiera rozwiązania zadań realizowanych w ramach laboratoriów z **Programowania Obiektowego** w języku **Java**. Każde laboratorium obejmuje różne aspekty obiektowego podejścia do programowania, takie jak **dziedziczenie, polimorfizm**, a także bardziej zaawansowane techniki, np. **wzorce projektowe i programowanie współbieżne**.
 
-Nazwę zwierzaka: Gituś
+## 🛠️ Uruchamianie projektu
 
-Link do mojego profilu na Git Exercises: https://gitexercises.fracz.com/committer/220df4ed03bd423a63fab98f1b5031da36d536ad?remember=0
+### ✅ Wymagania
+
+- **Java 17+**
+- **Gradle**
+
+### ▶️ Kompilacja i uruchomienie
+
+1. Sklonuj repozytorium:
+   ```bash
+   git clone https://github.com/pswierzy/LaboratoriaJava
+   cd LaboratoriaJava/oolab
+   ```
+2. Zbuduj projekt
+   ```bash
+   ./gradlew build
+   ```
+3. Uruchom aplikacje
+   ```bash
+   ./gradlew run
+   ```
+
+### 🧪 Uruchamianie testów
+
+Aby uruchomić testy jednostkowe, użyj:
+
+```bash
+./gradlew test
+```
+
+## 📌 Technologie
+
+- **Java 17** lub nowsza
+- IDE: IntelliJ IDEA
+
+## ✍️ Autor
+
+Laboratoria realizowane w ramach przedmiotu **Programowania Obiektowego** na AGH w Krakowie.
+
+**Autor:** Piotr Świerzy
