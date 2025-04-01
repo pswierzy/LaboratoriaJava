@@ -12,8 +12,8 @@ public class Simulation implements Runnable {
     private List<Animal> animals;
     private WorldMap map;
 
-    public Simulation(List <Vector2d> startPositions, List <MoveDirection> moves, WorldMap map) {
-        this.startPositions = startPositions;
+    public Simulation(List <MoveDirection> moves, WorldMap map) {
+        this.startPositions = List.of(new Vector2d(2,7), new Vector2d(5,5));;
         this.moves = moves;
         this.map = map;
         createAnimalList();
@@ -24,12 +24,12 @@ public class Simulation implements Runnable {
             }
         }
         catch (IncorrectPositionException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
     //Do testów
-    public Simulation(int a, List<MoveDirection> moves, List<Animal> animals) {
+    public Simulation(List<MoveDirection> moves, List<Animal> animals) {
         this.startPositions = new ArrayList<>();
         this.moves = moves;
         this.animals = animals;
@@ -41,13 +41,13 @@ public class Simulation implements Runnable {
         // a odnosimy się do nich dosyć często
 
         animals = new ArrayList<>();
-        for (int i = 0; i < startPositions.size(); i++) {
-           animals.add(new Animal(startPositions.get(i)));
+        for (Vector2d startPosition : startPositions) {
+            animals.add(new Animal(startPosition));
         }
     }
 
 
-    public void run(){
+    public void run() throws RuntimeException {
         int numberOfAnimals = animals.size();
         int currentAnimalIndex = 0;
 
@@ -56,6 +56,12 @@ public class Simulation implements Runnable {
             if (currentAnimalIndex == numberOfAnimals) currentAnimalIndex = 0;
 
             map.move(animals.get(currentAnimalIndex), move);
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
             currentAnimalIndex++;
         }

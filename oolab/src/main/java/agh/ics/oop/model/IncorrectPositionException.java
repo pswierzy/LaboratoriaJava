@@ -2,6 +2,6 @@ package agh.ics.oop.model;
 
 public class IncorrectPositionException extends Exception {
     public IncorrectPositionException(Vector2d vector2d) {
-        super("Position " + vector2d + " is not correct!");
+        super("You can't put an animal at " + vector2d);
     }
 }

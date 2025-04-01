@@ -22,7 +22,7 @@ class SimulationTest {
         List<MoveDirection> directions = OptionsParser.parse(array);
         List<Animal> animals = new ArrayList<>(Arrays.asList(animal1, animal2, animal3));
         //when
-        Simulation simulation = new Simulation(0,directions, animals);
+        Simulation simulation = new Simulation(directions, animals);
         simulation.run();
         //then
         assertEquals(animal1.getDirection(), MapDirection.NORTH);
@@ -41,7 +41,7 @@ class SimulationTest {
         List<MoveDirection> directions = OptionsParser.parse(array);
         List<Animal> animals = new ArrayList<>(Arrays.asList(animal1, animal2, animal3));
         //when
-        Simulation simulation = new Simulation(0,directions, animals);
+        Simulation simulation = new Simulation(directions, animals);
         simulation.run();
         //then
         assertEquals(animal1.getPosition(), new Vector2d(1,2));
@@ -61,7 +61,7 @@ class SimulationTest {
         List<MoveDirection> directions = OptionsParser.parse(array);
         List<Animal> animals = new ArrayList<>(Arrays.asList(animal1, animal2, animal3, animal4));
         //when
-        Simulation simulation = new Simulation(0,directions, animals);
+        Simulation simulation = new Simulation(directions, animals);
         simulation.run();
         //then
         assertEquals(animal1.getPosition(), new Vector2d(0,1));
@@ -80,7 +80,7 @@ class SimulationTest {
         List<MoveDirection> directions = OptionsParser.parse(array);
         List<Animal> animals = new ArrayList<>(Arrays.asList(animal1, animal2));
         //when
-        Simulation simulation = new Simulation(0,directions, animals);
+        Simulation simulation = new Simulation(directions, animals);
         simulation.run();
         //then
         assertEquals(animal1.getPosition(), new Vector2d(2,1));
