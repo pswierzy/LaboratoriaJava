@@ -13,6 +13,8 @@ public class RectangularMap extends AbstractWorldMap{
     public RectangularMap(int height, int width) {
         this.height = height;
         this.width = width;
+        this.MapID = NextMapID;
+        NextMapID++;
     }
 
     @Override

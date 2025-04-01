@@ -6,8 +6,10 @@ import agh.ics.oop.model.util.MapVisualizer;
 import java.util.*;
 
 public abstract class AbstractWorldMap extends Observable implements WorldMap {
+    protected static int NextMapID = 0;
     protected Map<Vector2d, Animal> animals = new HashMap<>();
     protected List<MapChangeListener> observers = new ArrayList<>();
+    protected int MapID;
 
     public void registerObserver(MapChangeListener listener) {
         observers.add(listener);
@@ -58,5 +60,10 @@ public abstract class AbstractWorldMap extends Observable implements WorldMap {
     @Override
     public String toString() {
         return new MapVisualizer(this).draw(getCurrentBounds().downLeft(), getCurrentBounds().upperRight());
+    }
+
+    @Override
+    public int getID(){
+        return this.MapID;
     }
 }
