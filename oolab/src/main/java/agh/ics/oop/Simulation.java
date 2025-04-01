@@ -18,8 +18,13 @@ public class Simulation {
         this.map = map;
         createAnimalList();
 
-        for (Animal animal : animals) {
-            map.place(animal);
+        try{
+            for (Animal animal : animals) {
+                map.place(animal);
+            }
+        }
+        catch (IncorrectPositionException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -51,7 +56,6 @@ public class Simulation {
             if (currentAnimalIndex == numberOfAnimals) currentAnimalIndex = 0;
 
             map.move(animals.get(currentAnimalIndex), move);
-            System.out.println(map);
 
             currentAnimalIndex++;
         }

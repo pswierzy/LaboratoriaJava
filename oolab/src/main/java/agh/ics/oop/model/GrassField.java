@@ -39,7 +39,14 @@ public class GrassField extends AbstractWorldMap {
     }
 
     @Override
-    public String toString() {
+    public List<WorldElement> getElements() {
+        List<WorldElement> elements = super.getElements();
+        elements.addAll(grassMap.values());
+        return elements;
+    }
+
+    @Override
+    public Boundary getCurrentBounds(){
         int maxX = (int) sqrt(numberOfGrass*10);
         int maxY = (int) sqrt(numberOfGrass*10);
         Vector2d up_right = new Vector2d(maxX, maxY);
@@ -48,13 +55,6 @@ public class GrassField extends AbstractWorldMap {
             up_right = up_right.upperRight(position);
             down_left = down_left.lowerLeft(position);
         }
-        return new MapVisualizer(this).draw(down_left, up_right);
-    }
-
-    @Override
-    public List<WorldElement> getElements() {
-        List<WorldElement> elements = super.getElements();
-        elements.addAll(grassMap.values());
-        return elements;
+        return new Boundary(down_left, up_right);
     }
 }

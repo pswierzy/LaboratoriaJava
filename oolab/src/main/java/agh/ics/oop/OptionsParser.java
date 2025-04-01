@@ -13,15 +13,13 @@ public class OptionsParser {
         List<MoveDirection> moves = new ArrayList<MoveDirection>(arg.length);
 
         for (String s : arg) {
-            if (s.equals("f") || s.equals("b") || s.equals("l") || s.equals("r")) {
-                moves.add(switch (s) {
+            moves.add(switch (s) {
                     case "f" -> MoveDirection.FORWARD;
                     case "b" -> MoveDirection.BACKWARD;
                     case "l" -> MoveDirection.LEFT;
                     case "r" -> MoveDirection.RIGHT;
-                    default -> throw new IllegalStateException("Unexpected value: " + s);
-                });
-            }
+                    default -> throw new IllegalArgumentException(s + " is not a legal move specification!");
+            });
         }
         return moves;
     }

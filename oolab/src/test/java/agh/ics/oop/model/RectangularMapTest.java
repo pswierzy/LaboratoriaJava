@@ -15,12 +15,21 @@ class RectangularMapTest {
         WorldMap map = new RectangularMap(5,5);
         Animal animal1 = new Animal();
         Animal animal2 = new Animal();
+        boolean place1 = false;
+        boolean place2 = false;
         //when
-        boolean res1 = map.place(animal1);
-        boolean res2 = map.place(animal2);
-        //then
-        assertTrue(res1);
-        assertFalse(res2);
+        try{
+            map.place(animal1);
+        }
+        catch (IncorrectPositionException e) {
+            place1 = true;
+        }
+        try{map.place(animal2);}
+        catch (IncorrectPositionException e) {
+            place2 = true;
+        }
+        assertFalse(place1);
+        assertTrue(place2);
     }
 
     @Test
@@ -28,7 +37,10 @@ class RectangularMapTest {
         //given
         WorldMap map = new RectangularMap(5,5);
         Animal animal1 = new Animal();
-        map.place(animal1);
+        try{map.place(animal1);}
+        catch (IncorrectPositionException e) {
+            throw new RuntimeException("Blad w testach " + e);
+        }
         //when
         map.move(animal1, MoveDirection.FORWARD);
         //then
@@ -48,8 +60,13 @@ class RectangularMapTest {
         Animal animal1 = new Animal(new Vector2d(2,3));
         Animal animal2 = new Animal(new Vector2d(4,4));
         //when
-        map.place(animal1);
-        map.place(animal2);
+        try {
+            map.place(animal1);
+            map.place(animal2);
+        }
+        catch (IncorrectPositionException e) {
+            throw new RuntimeException("Blad w testach " + e);
+        }
         //then
         assertTrue(map.objectAt(new Vector2d(2,3)) == animal1);
         assertTrue(map.objectAt(new Vector2d(4,4)) == animal2);
@@ -61,7 +78,10 @@ class RectangularMapTest {
         //given
         WorldMap map = new RectangularMap(5,5);
         Animal animal1 = new Animal();
-        map.place(animal1);
+        try{map.place(animal1);}
+        catch (IncorrectPositionException e) {
+            throw new RuntimeException("Blad w testach " + e);
+        }
         //then
         assertTrue(map.canMoveTo(new Vector2d(2,3)));
         assertFalse(map.canMoveTo(new Vector2d(2,2)));
@@ -86,9 +106,13 @@ class RectangularMapTest {
         //then
         assertEquals(new ArrayList<>(), map.getElements());
         //when
-        map.place(animal1);
-        map.place(animal2);
-        map.place(animal3);
+        try{
+            map.place(animal1);
+            map.place(animal2);
+            map.place(animal3);
+        }catch(IncorrectPositionException e){
+            throw new RuntimeException("Blad w testach " + e);
+        }
         //then
         assertEquals(animals, map.getElements());
         assertTrue(map.getElements().get(0) == animal1);
